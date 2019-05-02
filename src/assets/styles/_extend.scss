@@ -1,0 +1,16 @@
+%orbit{
+    border-radius : 50%;
+    border : 1px dashed #592e99;
+    position : absolute;
+    @include transform-translate(-50%,-50%);
+}
+%flex-box{
+    display : -webkit-box;
+    display : -ms-flexbox;
+    display : flex;
+}
+%flex-justify{
+    -webkit-box-pack : justify;
+    -ms-flex-pack : justify;
+    justify-content : space-between;
+}

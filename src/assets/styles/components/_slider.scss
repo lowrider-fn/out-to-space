@@ -1,0 +1,24 @@
+.slider{
+    .vue-slider-process{
+        background-color : #592e99;
+    }
+    .vue-slider-rail{
+        background-color : #592e99;
+    }
+    .vue-slider-dot-handle {
+        border-radius : 5px;
+        background-color : #1aba4f;
+    }
+    &__text-box{
+        @extend %flex-box;
+        @extend %flex-justify;
+        padding : 5px;
+    }
+    &__name{
+        margin-bottom : 0;
+    }
+    &__label{
+        margin-bottom : 0;
+    }
+
+}

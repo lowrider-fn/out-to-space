@@ -1,0 +1,43 @@
+.sidebar{
+    width : 200px;
+    position : fixed;
+    top : 0;
+    left : 0;
+    padding : 30px 15px;
+    z-index : 2;
+    height : 100vh;
+}
+.sidebar__count-control{
+    @extend %flex-box;
+    @extend %flex-justify;
+}
+.sidebar__count-label{
+    text-transform : uppercase;
+    font-weight : 700;
+    color : white;
+}
+.sidebar__count-btn{
+    @include transitions(all, 0.3s, ease-in-out);
+    background : transparent;
+    border : none;
+    outline : none;
+    border-radius : 50%;
+    cursor : pointer;
+    padding : 0;
+    display : inline-block;
+    &:hover{
+        opacity : 0.8;
+    }
+    &:active{
+        opacity : 0.6;
+    }
+    &:disabled{
+        opacity : 0.6;
+    }
+}
+.sidebar__bottom-range{
+    position : absolute;
+    left : 15px;
+    right : 15px;
+    bottom : 100px;
+}

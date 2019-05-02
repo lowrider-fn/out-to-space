@@ -1,0 +1,24 @@
+@import "./mixins";
+@import "./extend";
+@import "./components/sidebar";
+@import "./components/earth";
+@import "./components/moon";
+@import "./components/slider";
+@import "./components/satellite";
+@import "./components/ship";
+
+body{
+    margin : 0;
+    font-family : Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing : antialiased;
+    -moz-osx-font-smoothing : grayscale;
+    color : white;
+}
+#app {
+    background : #2b1146;
+    height : 100vh;
+}
+.space{
+    position : relative;
+    height : 100vh;
+}

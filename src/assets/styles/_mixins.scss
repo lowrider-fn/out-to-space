@@ -1,0 +1,11 @@
+@mixin transform-translate($x,$y){
+    -webkit-transform : translate(-50%,-50%);
+    -ms-transform : translate(-50%,-50%);
+    transform : translate(-50%,-50%);
+}
+
+@mixin transitions($action, $time, $prop){
+    -webkit-transition : $action, $time, $prop;
+    -o-transition : $action, $time, $prop;
+    transition : $action, $time, $prop;
+}

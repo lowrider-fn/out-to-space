@@ -1,0 +1,16 @@
+.moon{
+    @extend %orbit;
+    width : 1130px;
+    height : 1130px;
+    top : 40%;
+    left : 50%;
+}
+.moon__inner{
+    height : 100%;
+    position : relative;
+}
+.moon__icon{
+    position : absolute;
+    right : -3%;
+    top : 39%;
+}
