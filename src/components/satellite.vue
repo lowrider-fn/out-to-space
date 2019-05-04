@@ -1,35 +1,60 @@
 <template>
-    <div class="satellite">
-        <div class="satellite__inner">
-            <svg class="satellite__icon"
-                 width="42"
-                 height="60"
-                 xmlns="http://www.w3.org/2000/svg"
-            >
-                <g fill="none" fill-rule="evenodd">
-                    <path fill="#131313" d="M19.21 28L18 25.63l.79-.63L20 27.37z" />
-                    <path fill="#00ACED" d="M0 4.671L7.253 0 22 23.329 14.747 28z" />
-                    <path fill="#FFF" d="M18.902 26L4 3.062 4.098 3 19 25.94z" />
-                    <path fill="#FFF" d="M13.06 25l-.06-.103L19.94 20l.06.101zM10.06 21l-.06-.103L16.94 16l.06.103zM8.06 17L8 16.897 14.941 12l.059.101zM5.06 12L5 11.897 11.94 7l.06.101zM2.059 8L2 7.897 8.941 3 9 3.101z" />
-                    <path fill="#131313" d="M23.21 35L22 32.63l.79-.63L24 34.37z" />
-                    <path fill="#00ACED" d="M34.747 60L42 55.328 27.253 32 20 36.67z" />
-                    <path fill="#FFF" d="M38.902 57L24 34.06l.098-.06L39 56.938z" />
-                    <path fill="#FFF" d="M22.059 40L22 39.897 28.941 35l.059.101zM25.06 44l-.06-.103L31.94 39l.06.103zM28.06 48l-.06-.103L34.94 43l.06.103zM31.059 53L31 52.897 37.941 48l.059.101zM34.06 57l-.06-.103L40.94 52l.06.101z" />
-                    <path fill="#FAFFFF" d="M14.87 38L11 31.968 25.13 23 29 29.032z" />
-                    <path fill="#00ACED" d="M23.955 32L20 26.216 22.045 25 26 30.784z" />
-                    <path fill="#FAFFFF" d="M28.337 28L26 24.336 29.663 22 32 25.662zM13.528 38L11 33.958 12.472 33 15 37.04z" />
-                    <path d="M5.465 33.711c2.314-1.455 5.39-.786 6.867 1.494 1.477 2.28.799 5.306-1.517 6.762" fill="#FAFFFF" />
-                    <path fill="#131313" d="M28.3 27.777l-2.398-3.702.506-.317 2.399 3.7zM13.748 36.919l-2.398-3.7.48-.303 2.4 3.7z" />
-                    <path d="M23.985 30.777a.443.443 0 0 1-.605-.13.429.429 0 0 1 .133-.597.442.442 0 0 1 .604.132.426.426 0 0 1-.132.595" fill="#FF5340" />
-                </g>
-            </svg>
-        </div>
+    <div :ref="`satellite_${el}`" class="satellite">
     </div>
 </template>
 
 <script>
-export default {
 
+import * as svg from '@/assets/icons/sputnik.svg';
+import * as PIXI from 'pixi.js';
+
+export default {
+    props: {
+        el: Number,
+    },
+    data: () => ({
+        app      : null,
+        satellite: null,
+
+    }),
+    mounted() {
+        const satPath = this.$refs[`satellite_${this.el}`];
+        const container = document.getElementById('space');
+
+        satPath.style.top = `${this.randomInteger(40, 60)}%`;
+        satPath.style.left = `${this.randomInteger(45, 55)}%`;
+
+        this.app = new PIXI.Application({
+            transparent: true,
+            top        : '0',
+            left       : '0',
+            autoResize : true,
+            antialias  : true,
+        });
+        this.app.renderer.view.style.position = 'absolute';
+
+        this.app.renderer.resize(window.outerWidth, window.outerHeight);
+        container.appendChild(this.app.view);
+        this.app.loader.add(`icon_${this.el}`, svg).load((loader, resources) => {
+            this.satellite = new PIXI.Sprite(resources[`icon_${this.el}`].texture);
+
+            this.satellite.anchor.set(5.15);
+            this.satellite.x = satPath.offsetLeft;
+            this.satellite.y = satPath.offsetTop;
+
+            this.app.stage.addChild(this.satellite);
+
+            this.app.ticker.add(() => this.satellite.rotation += this.speed / 1000);
+        });
+    },
+    beforeDestroy() {
+        document.getElementById('space').removeChild(this.app.view);
+    },
+    methods: {
+        randomInteger(min, max) {
+            return Math.floor(min + Math.random() * (max + 1 - min));
+        },
+    },
 };
 </script>
 

@@ -5,7 +5,7 @@
                 {{ `${label} ${index ? index : ''}` }}
             </p>
             <p class="slider__label">
-                {{ `${labelSpeed} ${range}` }}
+                {{ `v: ${range}` }}
             </p>
         </div>
         <vue-slider :tooltip="'none'"
@@ -25,14 +25,25 @@ export default {
         'vue-slider': VueSlider,
     },
     props: {
-        data      : Array,
-        index     : Number,
-        label     : String,
-        labelSpeed: String,
+        data : Array,
+        index: Number,
+        label: String,
     },
     data: () => ({
         range: 0,
     }),
+    watch: {
+        range(value) {
+            if (this.index) {
+                this.$emit('changeSatelliteSpeed', {
+                    val  : value,
+                    index: this.index,
+                });
+            } else {
+                this.$emit('changeMoonSpeed', value);
+            }
+        },
+    },
     created() {
         this.range = this.randomInteger(1, 20);
     },

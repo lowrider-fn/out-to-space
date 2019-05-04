@@ -2,15 +2,4 @@
     @extend %orbit;
     width : 680px;
     height : 680px;
-    top : 40%;
-    left : 50%;
-}
-.satellite__inner{
-    height : 100%;
-    position : relative;
-}
-.satellite__icon{
-    position : absolute;
-    right : -3%;
-    top : 39%;
 }

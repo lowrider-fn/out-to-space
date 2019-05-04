@@ -29,6 +29,7 @@
         "linebreak-style": 0,
         "no-return-assign": 0,
         "no-plusplus":0,
+        "vue/no-duplicate-attributes":0,
 
 
         "vue/attribute-hyphenation":0,
