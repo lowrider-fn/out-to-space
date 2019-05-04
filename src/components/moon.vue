@@ -20,33 +20,24 @@ export default {
 
         this.app = new PIXI.Application({
             transparent: true,
-            top        : '0',
-            left       : '0',
             autoResize : true,
-            antialias  : true,
-
         });
-        this.app.renderer.view.style.position = 'absolute';
-
         this.app.renderer.resize(window.outerWidth, window.outerHeight);
+
         container.appendChild(this.app.view);
+
         this.app.loader.add('icon', svg).load((loader, resources) => {
-            this.satellite = new PIXI.Sprite(resources.icon.texture);
+            this.moon = new PIXI.Sprite(resources.icon.texture);
 
-            this.satellite.anchor.set(5.45);
-            this.satellite.x = orbit.offsetLeft;
-            this.satellite.y = orbit.offsetTop;
+            this.moon.anchor.set(5.45);
+            this.moon.x = orbit.offsetLeft;
+            this.moon.y = orbit.offsetTop;
 
-            this.app.stage.addChild(this.satellite);
-            this.app.ticker.add(() => this.satellite.rotation += this.speed / 1500);
+            this.app.stage.addChild(this.moon);
+
+            this.app.ticker.add(() => this.moon.rotation += this.speed / 1800);
         });
     },
-    methods: {
-        randomInteger(min, max) {
-            return Math.floor(min + Math.random() * (max + 1 - min));
-        },
-    },
-
 };
 </script>
 

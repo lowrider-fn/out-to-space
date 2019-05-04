@@ -7,6 +7,7 @@
 
 import * as svg from '@/assets/icons/sputnik.svg';
 import * as PIXI from 'pixi.js';
+import { randomInteger } from '@/helpers/helpers';
 
 export default {
     props: {
@@ -21,17 +22,13 @@ export default {
         const satPath = this.$refs[`satellite_${this.el}`];
         const container = document.getElementById('space');
 
-        satPath.style.top = `${this.randomInteger(40, 60)}%`;
-        satPath.style.left = `${this.randomInteger(45, 55)}%`;
+        satPath.style.top = `${randomInteger(40, 60)}%`;
+        satPath.style.left = `${randomInteger(45, 55)}%`;
 
         this.app = new PIXI.Application({
             transparent: true,
-            top        : '0',
-            left       : '0',
             autoResize : true,
-            antialias  : true,
         });
-        this.app.renderer.view.style.position = 'absolute';
 
         this.app.renderer.resize(window.outerWidth, window.outerHeight);
         container.appendChild(this.app.view);
@@ -50,11 +47,7 @@ export default {
     beforeDestroy() {
         document.getElementById('space').removeChild(this.app.view);
     },
-    methods: {
-        randomInteger(min, max) {
-            return Math.floor(min + Math.random() * (max + 1 - min));
-        },
-    },
+
 };
 </script>
 

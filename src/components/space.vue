@@ -1,14 +1,15 @@
 <template>
     <div id="space" class="space">
-        <sidebar :satellites="satellites"
+        <sidebar :data="setSpeeds"
+                 :satellites="satellites"
                  :addSatellite="addSatellite"
                  :removeSatellite="removeSatellite"
-                 @changeSatelliteSpeed="changeSatelliteSpeed($event)"
-                 @changeMoonSpeed="changeMoonSpeed($event)"
+                 @setNewSpeed="setNewSpeed($event)"
         />
         <earth />
         <moon ref="moon" />
-        <satellite :ref="`satellite_${i+1}`" v-for="(satellite, i ) in satellites"
+        <satellite :ref="`satellite_${i+1}`"
+                   v-for="(satellite, i ) in satellites"
                    :key="i"
                    :el="satellite"
         />
@@ -32,7 +33,7 @@ export default {
         satellites: [1, 2],
     }),
     computed: {
-        setSpeed() {
+        setSpeeds() {
             const arr = [];
             for (let i = 0; i < 21; i++) arr.push(i);
             return arr;
@@ -46,13 +47,11 @@ export default {
         removeSatellite() {
             this.satellites.pop();
         },
-        changeSatelliteSpeed(e) {
-            const el = this.$refs[`satellite_${e.index}`];
-            if (el) el[0].speed = e.val;
+        setNewSpeed(e) {
+            if (e.index) this.$refs[`satellite_${e.index}`][0].speed = e.val;
+            else this.$refs.moon.speed = e.val;
         },
-        changeMoonSpeed(e) {
-            this.$refs.moon.speed = e;
-        },
+
     },
 };
 

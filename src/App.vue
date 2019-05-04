@@ -11,7 +11,6 @@ import space from './components/space.vue';
 export default {
     name      : 'App',
     components: {
-
         space,
     },
 };

@@ -62,16 +62,16 @@
         <div class="slider" v-for="(satellite, i) in satellites"
              :key="i"
         >
-            <c-range :data="setSpeed"
+            <c-range :data="data"
                      :index="satellite"
                      :label="'Спутник'"
-                     @changeSatelliteSpeed="$emit('changeSatelliteSpeed',$event )"
+                     @setNewSpeed="$emit('setNewSpeed',$event )"
             />
         </div>
         <c-range class="sidebar__bottom-range"
-                 :data="setSpeed"
+                 :data="data"
                  :label="'Луна'"
-                 @changeMoonSpeed="$emit('changeMoonSpeed', $event)"
+                 @setNewSpeed="$emit('setNewSpeed', $event)"
         />
     </div>
 </template>
@@ -85,17 +85,9 @@ export default {
     },
     props: {
         satellites     : Array,
+        data           : Array,
         addSatellite   : Function,
         removeSatellite: Function,
-    },
-    computed: {
-        setSpeed() {
-            const arr = [];
-            for (let i = 0; i < 21; i++) {
-                arr.push(i);
-            }
-            return arr;
-        },
     },
 };
 </script>
