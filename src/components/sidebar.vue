@@ -5,58 +5,17 @@
                 Спутники
             </p>
             <button class="sidebar__count-btn"
-                    :disabled="satellites.length < 3"
+                    :disabled="satellites.length < 3 || isStart"
                     v
                     @click="removeSatellite()"
             >
-                <svg width="32"
-                     height="32"
-                     xmlns="http://www.w3.org/2000/svg"
-                >
-                    <g fill="none" fill-rule="evenodd">
-                        <circle fill="#5A2E9B"
-                                cx="16"
-                                cy="16"
-                                r="16"
-                        />
-                        <rect fill="#FFF"
-                              x="10"
-                              y="15"
-                              width="12"
-                              height="2"
-                              rx="1"
-                        />
-                    </g>
-                </svg>
+                <img :src="btnMinus">
             </button>
             <button class="sidebar__count-btn"
-                    :disabled="satellites.length >= 4"
+                    :disabled="satellites.length >= 4 || isStart"
                     @click="addSatellite()"
             >
-                <svg width="32"
-                     height="32"
-                     xmlns="http://www.w3.org/2000/svg"
-                >
-                    <g fill="none" fill-rule="evenodd">
-                        <circle fill="#19BB4F"
-                                cx="16"
-                                cy="16"
-                                r="16"
-                        />
-                        <rect fill="#FFF"
-                              x="15" y="10"
-                              width="2"
-                              height="12"
-                              rx="1"
-                        />
-                        <rect fill="#FFF"
-                              x="10" y="15"
-                              width="12"
-                              height="2"
-                              rx="1"
-                        />
-                    </g>
-                </svg>
+                <img :src="btnPlus">
             </button>
         </div>
         <div class="slider" v-for="(satellite, i) in satellites"
@@ -78,6 +37,8 @@
 
 <script>
 import cRange from './c-range';
+import btnMinus from '@/assets/icons/btn-minus.svg';
+import btnPlus from '@/assets/icons/btn-plus.svg';
 
 export default {
     components: {
@@ -88,7 +49,12 @@ export default {
         data           : Array,
         addSatellite   : Function,
         removeSatellite: Function,
+        isStart        : Boolean,
     },
+    data: () => ({
+        btnMinus,
+        btnPlus,
+    }),
 };
 </script>
 <style lang="scss">

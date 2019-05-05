@@ -1,11 +1,8 @@
 @import "./mixins";
 @import "./extend";
 @import "./components/sidebar";
-@import "./components/earth";
-@import "./components/moon";
 @import "./components/slider";
-@import "./components/satellite";
-@import "./components/ship";
+@import "./components/space";
 
 body{
     margin : 0;
@@ -17,14 +14,4 @@ body{
 #app {
     background : #2b1146;
     height : 100vh;
-}
-.space{
-    position : relative;
-    overflow: hidden;
-    height : 100vh;
-    canvas{
-        position : absolute;
-        top: 0;
-        left: 0;
-    }
 }

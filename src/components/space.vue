@@ -5,14 +5,26 @@
                  :addSatellite="addSatellite"
                  :removeSatellite="removeSatellite"
                  @setNewSpeed="setNewSpeed($event)"
+                 :isStart="isStart"
         />
         <earth />
-        <moon ref="moon" />
-        <satellite :ref="`satellite_${i+1}`"
+        <moon ref="moon"
+              :isStart="isStart"
+        />
+        <satellite :ref="`satellite_${satellite}`"
                    v-for="(satellite, i ) in satellites"
                    :key="i"
+                   :isStart="isStart"
                    :el="satellite"
         />
+        <div class="space__control-game">
+            <button class="space_btn-start"
+                    :disabled="isStart"
+                    @click="isStart = true"
+            >
+                Вперед!
+            </button>
+        </div>
     </div>
 </template>
 
@@ -31,6 +43,7 @@ export default {
     },
     data: () => ({
         satellites: [1, 2],
+        isStart   : false,
     }),
     computed: {
         setSpeeds() {
@@ -51,7 +64,6 @@ export default {
             if (e.index) this.$refs[`satellite_${e.index}`][0].speed = e.val;
             else this.$refs.moon.speed = e.val;
         },
-
     },
 };
 

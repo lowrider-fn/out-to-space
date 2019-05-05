@@ -17,23 +17,8 @@
     color : white;
 }
 .sidebar__count-btn{
-    @include transitions(all, 0.3s, ease-in-out);
-    background : transparent;
-    border : none;
-    outline : none;
+    @extend %btn;
     border-radius : 50%;
-    cursor : pointer;
-    padding : 0;
-    display : inline-block;
-    &:hover{
-        opacity : 0.8;
-    }
-    &:active{
-        opacity : 0.6;
-    }
-    &:disabled{
-        opacity : 0.6;
-    }
 }
 .sidebar__bottom-range{
     position : absolute;

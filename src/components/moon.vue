@@ -5,15 +5,22 @@
 
 <script>
 
-import * as svg from '@/assets/icons/moon.svg';
+import svg from '@/assets/icons/moon.svg';
 import * as PIXI from 'pixi.js';
 
 export default {
+    props: {
+        isStart: Boolean,
+    },
     data: () => ({
         app : null,
         moon: null,
-
     }),
+    watch: {
+        isStart(val) {
+            val ? this.app.start() : this.app.stop();
+        },
+    },
     mounted() {
         const orbit = this.$refs.moon;
         const container = document.getElementById('space');
@@ -28,8 +35,10 @@ export default {
 
         this.app.loader.add('icon', svg).load((loader, resources) => {
             this.moon = new PIXI.Sprite(resources.icon.texture);
-
-            this.moon.anchor.set(5.45);
+            console.log(this.moon);
+            this.moon.height = 30;
+            this.moon.width = 30;
+            this.moon.anchor.set(7.2);
             this.moon.x = orbit.offsetLeft;
             this.moon.y = orbit.offsetTop;
 
@@ -37,6 +46,7 @@ export default {
 
             this.app.ticker.add(() => this.moon.rotation += this.speed / 1800);
         });
+        this.app.stop();
     },
 };
 </script>
