@@ -7,13 +7,13 @@
             <button class="sidebar__count-btn"
                     :disabled="satellites.length < 3 || isStart"
                     v
-                    @click="removeSatellite()"
+                    @click="$emit('remove')"
             >
                 <img :src="btnMinus">
             </button>
             <button class="sidebar__count-btn"
                     :disabled="satellites.length >= 4 || isStart"
-                    @click="addSatellite()"
+                    @click="$emit('add')"
             >
                 <img :src="btnPlus">
             </button>
@@ -21,16 +21,18 @@
         <div class="slider" v-for="(satellite, i) in satellites"
              :key="i"
         >
-            <c-range :data="data"
+            <c-range :value="randomInteger(1, 25)"
+                     :data="data"
                      :index="satellite"
                      :label="'Спутник'"
-                     @setNewSpeed="$emit('setNewSpeed',$event )"
+                     @change="$emit('setNewSpeed',{ val : $event, index : satellite } )"
             />
         </div>
         <c-range class="sidebar__bottom-range"
+                 :value="randomInteger(1, 20)"
                  :data="data"
                  :label="'Луна'"
-                 @setNewSpeed="$emit('setNewSpeed', $event)"
+                 @change="$emit('setNewSpeed',{ val: $event })"
         />
     </div>
 </template>
@@ -39,25 +41,21 @@
 import cRange from './c-range';
 import btnMinus from '@/assets/icons/btn-minus.svg';
 import btnPlus from '@/assets/icons/btn-plus.svg';
+import { randomInteger } from '@/helpers/helpers';
 
 export default {
     components: {
         'c-range': cRange,
     },
     props: {
-        satellites     : Array,
-        data           : Array,
-        addSatellite   : Function,
-        removeSatellite: Function,
-        isStart        : Boolean,
+        satellites: Array,
+        data      : Array,
+        isStart   : Boolean,
     },
     data: () => ({
+        randomInteger,
         btnMinus,
         btnPlus,
     }),
 };
 </script>
-<style lang="scss">
-
-</style>
-

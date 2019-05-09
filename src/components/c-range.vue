@@ -5,13 +5,14 @@
                 {{ `${label} ${index ? index: ''}` }}
             </p>
             <p class="slider__label">
-                {{ `v: ${speed}` }}
+                {{ `v: ${range}` }}
             </p>
         </div>
         <vue-slider :tooltip="'none'"
                     :dotSize="[11, 25]"
                     :data="data"
-                    v-model="speed"
+                    v-model="range"
+                    @change="$emit('change', $event)"
         />
     </div>
 </template>
@@ -19,7 +20,6 @@
 <script>
 import VueSlider from 'vue-slider-component';
 import 'vue-slider-component/theme/default.css';
-import { randomInteger } from '@/helpers/helpers';
 
 export default {
     components: {
@@ -29,27 +29,14 @@ export default {
         data : Array,
         index: Number,
         label: String,
+        value: [String, Number],
     },
     data: () => ({
-        speed: 0,
+        range: 10,
     }),
-    watch: {
-        speed(speed) {
-            if (this.index) {
-                this.$emit('setNewSpeed', {
-                    val  : speed,
-                    index: this.index,
-                });
-            } else {
-                this.$emit('setNewSpeed', { val: speed });
-            }
-        },
-    },
     created() {
-        this.speed = randomInteger(1, 20);
+        this.range = this.value;
+        this.$emit('change', this.range);
     },
 };
 </script>
-<style lang="scss">
-
-</style>

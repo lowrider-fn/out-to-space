@@ -6,50 +6,36 @@
         position : absolute;
         top : 0;
         left : 0;
+        z-index : 1;
     }
-    .earth{
-        position : absolute;
-        top : 55%;
-        left : 50%;
-        @include transform-translate(-50%,-50%);
-        &__img{
-            width : 210px;
-        }
-    }
-    .moon{
+    &__moon{
         @extend %orbit;
         width : 565px;
         height : 565px;
         top : 45%;
         left : 50%;
     }
-    .satellite{
+    &__satellite{
         @extend %orbit;
         width : 340px;
         height : 340px;
     }
-    .ship{
+    &__control{
         position : absolute;
-        left : 50%;
-        top : 26px;
-        @include transform-translate(-50%,0);
+        bottom : 40px;
+        z-index : 1;
+        left : 0;
+        width : 100%;
+        &-btn{
+            @extend %btn;
+            color : white;
+            text-transform : uppercase;
+            background : #1aba4f;
+            padding : 10px 35px;
+            border-radius : 4px;
+            font-weight : 700;
+            margin : 0 auto;
+            display : block;
+        }
     }
-}
-.space__control-game{
-    position : absolute;
-    bottom : 40px;
-    z-index : 1;
-    left : 0;
-    width : 100%;
-}
-.space_btn-start{
-    @extend %btn;
-    color : white;
-    text-transform : uppercase;
-    background : #1aba4f;
-    padding : 10px 35px;
-    border-radius : 4px;
-    font-weight : 700;
-    margin : 0 auto;
-    display : block;
 }
