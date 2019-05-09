@@ -1,4 +1,4 @@
-# hello-world
+# Out to space
 
 ## Project setup
 ```
@@ -26,4 +26,7 @@ npm run lint --fix
 ```
 
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+See [Configuration Reference](https://cli.vuejs.org/config/)
+
+### Pixi step by step 
+https://github.com/kittykatattack/learningPixi
