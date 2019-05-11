@@ -9,7 +9,7 @@
             </p>
         </div>
         <vue-slider :tooltip="'none'"
-                    :dotSize="[11, 25]"
+                    :dotSize="[10, 20]"
                     :data="data"
                     v-model="range"
                     @change="$emit('change', $event)"

@@ -31,7 +31,7 @@
         "no-plusplus":0,
         "vue/no-duplicate-attributes":0,
         "no-unused-expressions":0,
-
+        "guard-for-in":0,
 
         "vue/attribute-hyphenation":0,
         "vue/html-quotes": false,

@@ -22,7 +22,7 @@
              :key="i"
         >
             <c-range :value="randomInteger(1, 25)"
-                     :data="data"
+                     :data="setSpeed(26)"
                      :index="satellite"
                      :label="'Спутник'"
                      @change="$emit('setNewSpeed',{ val : $event, index : satellite } )"
@@ -30,7 +30,7 @@
         </div>
         <c-range class="sidebar__bottom-range"
                  :value="randomInteger(1, 20)"
-                 :data="data"
+                 :data="setSpeed(21)"
                  :label="'Луна'"
                  @change="$emit('setNewSpeed',{ val: $event })"
         />
@@ -49,7 +49,7 @@ export default {
     },
     props: {
         satellites: Array,
-        data      : Array,
+        setSpeed  : Function,
         isStart   : Boolean,
     },
     data: () => ({
