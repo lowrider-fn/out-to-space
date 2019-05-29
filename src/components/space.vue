@@ -64,11 +64,11 @@ export default {
         this.initPixi();
         this.initSprites();
         const audio = new Audio(music);
-        audio.play();
-        // .then()
-        // .catch((error) => {
-        //     console.log(error);
-        // });
+        audio.play()
+            .then()
+            .catch((error) => {
+                console.log(error);
+            });
     },
     methods: {
         initPixi() {
