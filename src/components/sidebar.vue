@@ -21,31 +21,31 @@
         <div class="slider" v-for="(satellite, i) in satellites"
              :key="i"
         >
-            <c-range :value="randomInteger(1, 25)"
-                     :data="setSpeed(26)"
-                     :index="satellite"
-                     :label="'Спутник'"
-                     @change="$emit('setNewSpeed',{ val : $event, index : satellite } )"
+            <range :value="randomInteger(1, 25)"
+                   :data="setSpeed(26)"
+                   :index="satellite"
+                   :label="'Спутник'"
+                   @change="$emit('setNewSpeed',{ val : $event, index : satellite } )"
             />
         </div>
-        <c-range class="sidebar__bottom-range"
-                 :value="randomInteger(1, 20)"
-                 :data="setSpeed(21)"
-                 :label="'Луна'"
-                 @change="$emit('setNewSpeed',{ val: $event })"
+        <range class="sidebar__bottom-range"
+               :value="randomInteger(1, 20)"
+               :data="setSpeed(21)"
+               :label="'Луна'"
+               @change="$emit('setNewSpeed',{ val: $event })"
         />
     </div>
 </template>
 
 <script>
-import cRange from './c-range';
+import Range from './range';
 import btnMinus from '@/assets/icons/btn-minus.svg';
 import btnPlus from '@/assets/icons/btn-plus.svg';
-import { randomInteger } from '@/helpers/helpers';
+import { randomInteger } from '@/helpers';
 
 export default {
     components: {
-        'c-range': cRange,
+        range: Range,
     },
     props: {
         satellites: Array,

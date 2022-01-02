@@ -112,6 +112,7 @@
             "multiLine": {
                     "align": "colon"
             }
-        }]
+        }],
+        "import/prefer-default-export":"off"
     }
 }
