@@ -1,5 +1,4 @@
-# Out to space. [Demo]
-(https://lowrider-fn.github.io/out-to-space/)
+# Out to space. [Demo](https://lowrider-fn.github.io/out-to-space/)
 ## Project setup
 ```
 npm install
